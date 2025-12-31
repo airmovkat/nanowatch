@@ -2,6 +2,16 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
+import NewYearPendants from "./NewYearPendants";
+
+/* Optional Sparkles wrapper for hover effects */
+function Sparkles({ children }) {
+  return (
+    <div className="relative inline-block hover:before:content-[''] hover:before:absolute hover:before:w-2 hover:before:h-2 hover:before:bg-yellow-300 hover:before:rounded-full hover:before:animate-ping">
+      {children}
+    </div>
+  );
+}
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -14,32 +24,43 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed w-full bg-white dark:bg-gray-900 shadow z-50">
+    <nav className="fixed top-0 w-full bg-white dark:bg-gray-900 shadow z-50">
       <div className="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
 
-        {/* Logo with Santa Hat */}
-        <Link
-          to="/"
-          className="font-bold text-3xl text-blue-600 dark:text-blue-400 relative inline-flex items-center"
-        >
-          <span className="relative inline-block">
-            N
-            <img
-              src="images/santa_hat.gif"
-              alt="Santa Hat"
-              className="absolute -top-1 -left-2.5 w-6 h-6 animate-wobble"
-            />
-          </span>
-          anoWatch
-        </Link>
+        <div className="flex flex-col items-start leading-none relative">
 
-        {/* Desktop Menu */}
+  {/* LOGO WITH SPARKLES */}
+  <Sparkles>
+    <Link
+      to="/"
+      className="relative inline-flex items-center font-bold text-3xl
+                 text-blue-600 dark:text-blue-400 no-text-jump"
+    >
+      <span className="relative inline-block mr-0.5">
+        N
+      </span>
+      anoWatch
+    </Link>
+  </Sparkles>
+
+<div className="ml-6" style={{ marginTop: "-4px" }}>
+  <NewYearPendants />
+</div>
+
+
+
+</div>
+
+
+        {/* DESKTOP MENU */}
         <div className="hidden md:flex space-x-6 items-center">
           {menuLinks.map((link) => (
             <Link
               key={link.name}
               to={link.path}
-              className="font-semibold text-gray-800 dark:text-white hover:text-blue-500 dark:hover:text-blue-300 transition"
+              className="font-semibold text-gray-800 dark:text-white
+                         hover:text-blue-500 dark:hover:text-blue-300
+                         transition-colors duration-300"
             >
               {link.name}
             </Link>
@@ -47,42 +68,49 @@ export default function Navbar() {
           <ThemeToggle />
         </div>
 
-        {/* Mobile Hamburger */}
+        {/* MOBILE MENU BUTTON */}
         <div className="md:hidden flex items-center">
           <ThemeToggle />
-          <button onClick={() => setOpen(!open)} className="ml-3 focus:outline-none">
+          <button
+            onClick={() => setOpen(!open)}
+            className="ml-3 focus:outline-none"
+            aria-label="Toggle Menu"
+          >
             <svg
               className="w-6 h-6 text-gray-800 dark:text-white"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
             >
               {open ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16" />
               )}
             </svg>
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* MOBILE MENU */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="md:hidden bg-white dark:bg-gray-700 overflow-hidden"
+            transition={{ duration: 0.25 }}
+            className="md:hidden bg-white dark:bg-gray-800 overflow-hidden"
           >
             {menuLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
                 onClick={() => setOpen(false)}
-                className="block py-3 px-4 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 transition"
+                className="block py-3 px-4 text-gray-800 dark:text-white
+                           hover:bg-gray-100 dark:hover:bg-gray-700 transition"
               >
                 {link.name}
               </Link>

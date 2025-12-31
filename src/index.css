@@ -2,21 +2,115 @@
 @tailwind components;
 @tailwind utilities;
 
+/* =====================
+   FONT & BLUR FIX
+===================== */
 .no-text-jump {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: geometricPrecision;
+  text-rendering: optimizeLegibility;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
-
+/* =====================
+   SANTA HAT (OPTIONAL)
+===================== */
 @keyframes wobble {
   0%, 100% { transform: rotate(0deg); }
   25% { transform: rotate(-5deg); }
   50% { transform: rotate(5deg); }
   75% { transform: rotate(-3deg); }
 }
-
 .animate-wobble {
   animation: wobble 1.5s ease-in-out infinite;
 }
 
+/* =====================
+   PENDANT SWING
+===================== */
+@keyframes pendantSwing {
+  0% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+  100% { transform: rotate(-6deg); }
+}
+
+.animate-pendant {
+  animation: pendantSwing 2.8s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+/* =====================
+   GOLD METALLIC PENDANT
+===================== */
+.pendant {
+  width: 34px;
+  height: 40px;
+  border-radius: 8px;
+  background: linear-gradient(
+    145deg,
+    #fff3b0 0%,
+    #ffd700 25%,
+    #c9a227 50%,
+    #ffd700 75%,
+    #fff3b0 100%
+  );
+  box-shadow:
+    inset 1px 1px 2px rgba(255,255,255,0.8),
+    inset -2px -2px 4px rgba(0,0,0,0.25),
+    0 6px 10px rgba(0,0,0,0.3);
+  color: #7a5c00;
+  font-weight: 800;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Shine */
+.pendant::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  width: 60%;
+  height: 30%;
+  background: rgba(255,255,255,0.4);
+  border-radius: 50%;
+  filter: blur(1px);
+}
+
+/* =====================
+   FIREWORK SPARKLES
+===================== */
+@keyframes sparkle {
+  0% {
+    opacity: 1;
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5) translate(var(--x), var(--y));
+  }
+}
+
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffd700 0%, #ff9800 70%, transparent 100%);
+  pointer-events: none;
+  animation: sparkle 0.8s ease-out forwards;
+}
+
+.sparkle::before {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, rgba(255,215,0,0.6), transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}

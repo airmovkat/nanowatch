@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import GoToTop from "./components/GoToTop";
-import SnowEffect from "./components/SnowEffect";
+//import SnowEffect from "./components/SnowEffect";//
 import AdPopup from "./components/AdPopup";
 
 import Home from "./pages/Home";
@@ -16,7 +16,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900">
-        <SnowEffect />
+       
         <AdPopup />
         <Navbar />
         <FloatingWhatsApp />
