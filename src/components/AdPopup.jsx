@@ -35,7 +35,7 @@ export default function AdPopup() {
 
         {/* Advertisement Image */}
         <img
-          src="public/images/ad.jpg"
+          src="/images/ad.jpg"
           alt="Advertisement"
           className="w-full rounded-xl shadow-2xl"
         />
@@ -43,3 +43,4 @@ export default function AdPopup() {
     </div>
   );
 }
+
