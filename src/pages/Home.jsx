@@ -7,7 +7,10 @@ export default function Home() {
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [pageLoaded, setPageLoaded] = useState(false);
 
-  useEffect(() => setPageLoaded(true), []);
+  useEffect(() => {
+    const timer = setTimeout(() => setPageLoaded(true), 0);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     fetch(

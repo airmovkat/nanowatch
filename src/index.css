@@ -114,3 +114,34 @@
   border-radius: 50%;
   transform: translate(-50%, -50%);
 }
+
+/* =====================
+   DUST PARTICLES (LOGO)
+   Lightweight floating particles used by `Sparkles.jsx`
+===================== */
+@keyframes dustFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(1);
+  }
+  10% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) scale(0.6);
+  }
+}
+
+.dust-particle {
+  position: absolute;
+  border-radius: 999px;
+  background: rgba(255,215,140,0.95);
+  box-shadow: 0 0 6px rgba(255,210,140,0.6);
+  pointer-events: none;
+  opacity: 0;
+  animation-name: dustFloat;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+}
+

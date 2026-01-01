@@ -1,17 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 import NewYearPendants from "./NewYearPendants";
-
-/* Optional Sparkles wrapper for hover effects */
-function Sparkles({ children }) {
-  return (
-    <div className="relative inline-block hover:before:content-[''] hover:before:absolute hover:before:w-2 hover:before:h-2 hover:before:bg-yellow-300 hover:before:rounded-full hover:before:animate-ping">
-      {children}
-    </div>
-  );
-}
+import Sparkles from "./Sparkles";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -29,27 +22,27 @@ export default function Navbar() {
 
         <div className="flex flex-col items-start leading-none relative">
 
-  {/* LOGO WITH SPARKLES */}
-  <Sparkles>
-    <Link
-      to="/"
-      className="relative inline-flex items-center font-bold text-3xl
+          {/* LOGO WITH SPARKLES */}
+          <Sparkles>
+            <Link
+              to="/"
+              className="relative inline-flex items-center font-bold text-3xl
                  text-blue-600 dark:text-blue-400 no-text-jump"
-    >
-      <span className="relative inline-block mr-0.5">
-        N
-      </span>
-      anoWatch
-    </Link>
-  </Sparkles>
+            >
+              <span className="relative inline-block mr-0.5">
+                N
+              </span>
+              anoWatch
+            </Link>
+          </Sparkles>
 
-<div className="ml-6" style={{ marginTop: "-4px" }}>
-  <NewYearPendants />
-</div>
+          <div className="ml-6" style={{ marginTop: "-4px" }}>
+            <NewYearPendants />
+          </div>
 
 
 
-</div>
+        </div>
 
 
         {/* DESKTOP MENU */}

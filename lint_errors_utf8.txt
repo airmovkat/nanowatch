@@ -1,0 +1,95 @@
+﻿
+C:\Users\SLAF\Desktop\Nanowatch\src\components\FadeIn.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\SLAF\Desktop\Nanowatch\src\components\Navbar.jsx
+  3:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\SLAF\Desktop\Nanowatch\src\components\Sparkles.jsx
+  57:10  error  Parsing error: Identifier 'useState' has already been declared
+
+C:\Users\SLAF\Desktop\Nanowatch\src\components\ThemeToggle.jsx
+  12:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  10 |     const savedTheme = localStorage.getItem("theme");
+  11 |     if (savedTheme === "dark") {
+> 12 |       setDarkMode(true);
+     |       ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  13 |       document.documentElement.classList.add("dark");
+  14 |     }
+  15 |   }, []);  react-hooks/set-state-in-effect
+
+C:\Users\SLAF\Desktop\Nanowatch\src\pages\About.jsx
+  9:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+   7 |   // Trigger page fade-in
+   8 |   useEffect(() => {
+>  9 |     setPageLoaded(true);
+     |     ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  10 |   }, []);
+  11 |
+  12 |   const features = [  react-hooks/set-state-in-effect
+
+C:\Users\SLAF\Desktop\Nanowatch\src\pages\Home.jsx
+  10:19  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+   8 |   const [pageLoaded, setPageLoaded] = useState(false);
+   9 |
+> 10 |   useEffect(() => setPageLoaded(true), []);
+     |                   ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  11 |
+  12 |   useEffect(() => {
+  13 |     fetch(  react-hooks/set-state-in-effect
+
+C:\Users\SLAF\Desktop\Nanowatch\src\pages\Products.jsx
+  11:19  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+   9 |   const [pageLoaded, setPageLoaded] = useState(false);
+  10 |
+> 11 |   useEffect(() => setPageLoaded(true), []);
+     |                   ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  12 |
+  13 |   useEffect(() => {
+  14 |     fetch("https://script.google.com/macros/s/AKfycbyPynzh8hiwwhwaL6-SD42dI_Ee6Qv-A-Toxj4Xi6b9BD-sEwMjzhyMblWLJSNtPRl6/exec")  react-hooks/set-state-in-effect
+  35:7   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  33 |   useEffect(() => {
+  34 |     if (selectedCategory === "All") {
+> 35 |       setFiltered(products);
+     |       ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  36 |     } else {
+  37 |       setFiltered(products.filter(p => p.category === selectedCategory));
+  38 |     }                                                                                 react-hooks/set-state-in-effect
+
+Γ£û 8 problems (8 errors, 0 warnings)
+

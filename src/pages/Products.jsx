@@ -4,11 +4,14 @@ import FadeIn from "../components/FadeIn";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
-  const [filtered, setFiltered] = useState([]);
+
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [pageLoaded, setPageLoaded] = useState(false);
 
-  useEffect(() => setPageLoaded(true), []);
+  useEffect(() => {
+    const timer = setTimeout(() => setPageLoaded(true), 0);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     fetch("https://script.google.com/macros/s/AKfycbyPynzh8hiwwhwaL6-SD42dI_Ee6Qv-A-Toxj4Xi6b9BD-sEwMjzhyMblWLJSNtPRl6/exec")
@@ -20,7 +23,6 @@ export default function Products() {
          * ❌ Do NOT filter only yes
          */
         setProducts(data);
-        setFiltered(data);
       })
       .catch(err => console.error("Failed to load products", err));
   }, []);
@@ -30,13 +32,9 @@ export default function Products() {
     ...new Set(products.map(p => p.category).filter(Boolean))
   ];
 
-  useEffect(() => {
-    if (selectedCategory === "All") {
-      setFiltered(products);
-    } else {
-      setFiltered(products.filter(p => p.category === selectedCategory));
-    }
-  }, [selectedCategory, products]);
+  const filtered = selectedCategory === "All"
+    ? products
+    : products.filter(p => p.category === selectedCategory);
 
   return (
     <FadeIn className={pageLoaded ? "opacity-100 transition-opacity duration-700" : "opacity-0"}>

@@ -6,7 +6,8 @@ export default function About() {
 
   // Trigger page fade-in
   useEffect(() => {
-    setPageLoaded(true);
+    const timer = setTimeout(() => setPageLoaded(true), 0);
+    return () => clearTimeout(timer);
   }, []);
 
   const features = [
